@@ -19,7 +19,7 @@ class WeatherAPI {
     
     let baseURL = "https://api.openweathermap.org/data/2.5/weather" //base URL
     
-    func getWeatherDataForCurrentLocation(unit: String, completion: @escaping (WeatherData?, Error?) -> ()) {
+    func getWeatherDataForCurrentLocation(units: String = "imperial", completion: @escaping (WeatherData?, Error?) -> ()) {
         let locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
@@ -33,7 +33,7 @@ class WeatherAPI {
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
         
-        let urlString = "\(baseURL)?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)&units=\(unit)"
+        let urlString = "\(baseURL)?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)&units=\(units)"
         let url = URL(string: urlString)!
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
