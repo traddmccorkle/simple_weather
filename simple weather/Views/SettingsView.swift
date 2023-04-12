@@ -15,7 +15,7 @@ struct SettingsView: View {
             List {
                 NavigationLink(destination: UnitSelectionView(selectedUnit: $selectedUnit)) {
                     HStack {
-                        Text("Unit of Temperature")
+                        Text("Temperature Unit")
                         Spacer()
                         Text(selectedUnit)
                             .foregroundColor(.gray)

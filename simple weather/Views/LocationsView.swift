@@ -10,7 +10,7 @@ import SwiftUI
 struct LocationsView: View {
     var body: some View {
         VStack {
-            Text("SEARCH PLACEHOLDER")
+            Text("In this tab you will be able to manage your locations.")
         }
     }
 }

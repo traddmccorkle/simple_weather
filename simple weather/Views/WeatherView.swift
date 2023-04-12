@@ -18,8 +18,8 @@ struct WeatherView: View {
         _highTemperature = State(initialValue: highTemperature)
         _lowTemperature = State(initialValue: lowTemperature)
         _weatherCondition = State(initialValue: weatherCondition)
-    }//Used for preview provider
-    
+    }
+    // Body
     var body: some View {
         VStack {
             if temperature.isEmpty {
