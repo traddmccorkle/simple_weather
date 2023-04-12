@@ -10,19 +10,22 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-        TabView {
+        NavigationStack {
             WeatherView()
-                .tabItem {
-                    Label("Weather", systemImage: "cloud.fill")
-                }
-            LocationsView()
-                .tabItem {
-                    Label("Locations", systemImage: "magnifyingglass")
-                }
-            SettingsView()
-                .tabItem {
-                    Label("Settings", systemImage: "gear")
-                }
+                .navigationBarItems(
+                    trailing:
+                        Menu {
+                            Button(action: {}) {
+                                Label("Celsius °C", systemImage: "thermometer.sun.fill")
+                            }
+                            Button(action: {}) {
+                                Label("Fahrenheit °F", systemImage: "thermometer.sun.fill")
+                            }
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
+                                .font(.system(size: 20))
+                        }
+                )
         }
     }
     

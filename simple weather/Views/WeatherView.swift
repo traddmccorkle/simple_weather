@@ -6,7 +6,7 @@ struct WeatherView: View {
     
     @AppStorage("temperatureUnit") private var selectedUnit: String = TemperatureUnit.fahrenheit.rawValue
     
-    @State private var currentLocation: String = ""
+    @State public var currentLocation: String = ""
     @State private var temperature: String = ""
     @State private var highTemperature: String = ""
     @State private var lowTemperature: String = ""
