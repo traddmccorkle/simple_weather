@@ -9,7 +9,14 @@ import CoreLocation
 import SwiftUI
 
 class WeatherAPI {
-    let apikey = "7958f83c1c9a9a3a23894a4b9fed97fe" //API key
+    let apiKey: String //API key
+    
+    init() {
+        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "WeatherAPIKey") as? String else {
+            fatalError("API key not found in info.plist file")
+        }
+        self.apiKey = apiKey
+    }
     let baseURL = "https://api.openweathermap.org/data/2.5/weather" //base URL
     
     func getWeatherDataForCurrentLocation(completion: @escaping (WeatherData?, Error?) -> ()) {
@@ -26,7 +33,7 @@ class WeatherAPI {
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
         
-        let urlString = "\(baseURL)?lat=\(latitude)&lon=\(longitude)&appid=\(apikey)&units=imperial"
+        let urlString = "\(baseURL)?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)&units=imperial"
         let url = URL(string: urlString)!
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in

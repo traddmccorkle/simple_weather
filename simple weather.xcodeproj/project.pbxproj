@@ -40,6 +40,7 @@
 		C98DB26429E5CAB200C073A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C98DB26C29E6204500C073A9 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		C98DB27229E6257A00C073A9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C98DB27429E6307C00C073A9 /* simple-weather-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "simple-weather-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +74,7 @@
 		C98DB24929E5C05000C073A9 /* simple weather */ = {
 			isa = PBXGroup;
 			children = (
+				C98DB27429E6307C00C073A9 /* simple-weather-Info.plist */,
 				C98DB27029E6251C00C073A9 /* Views */,
 				C98DB27129E6252900C073A9 /* Background */,
 				C98DB24A29E5C05000C073A9 /* simple_weatherApp.swift */,
@@ -324,6 +326,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"simple weather/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "simple-weather-Info.plist";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app will use your location to get your local weather.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -354,6 +357,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"simple weather/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "simple-weather-Info.plist";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app will use your location to get your local weather.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
