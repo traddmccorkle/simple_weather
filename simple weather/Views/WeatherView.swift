@@ -11,8 +11,13 @@ import CoreLocation
 struct WeatherView: View {
     let weatherAPI = WeatherAPI()
     
-    @State public var temperature: String = ""
-    @State public var currentLocation: String = ""
+    @State private var temperature: String = ""
+    @State private var currentLocation: String = ""
+    
+    init(temperature: String = "", currentLocation: String = "") {
+            _temperature = State(initialValue: temperature)
+            _currentLocation = State(initialValue: currentLocation)
+        }//Used for preview provider
     
     var body: some View {
         VStack {
@@ -21,13 +26,16 @@ struct WeatherView: View {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle())
             } else {
-                Text("\(currentLocation)")
-                    .font(.system(.largeTitle, design: .rounded))
                 Text("\(temperature)°F")
                     .font(.system(.largeTitle, design: .rounded))
             }
         }
-        .padding()
+        .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Text(currentLocation)
+                            .font(.headline)
+                    }
+                } //Displays current location at the top of the app
         .onAppear() { //Updates weather when this view appears
             getCurrentWeather()
         }
@@ -57,7 +65,7 @@ struct WeatherView: View {
     
     struct WeatherView_Previews: PreviewProvider {
         static var previews: some View {
-            WeatherView()
+            WeatherView(temperature: "69", currentLocation: "Sample City")
         }
     }
 }

@@ -8,21 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isShowingSettings = false
     
     var body: some View {
-        NavigationView {
+         NavigationStack {
             WeatherView()
-                .navigationBarItems(trailing:
-                                        Button(action: {
-                    self.isShowingSettings = true
-                }) {
-                    Image(systemName: "line.horizontal.3")
-                }
-                )
-        }
-        .sheet(isPresented: $isShowingSettings) {
-            SettingsView()
         }
     }
     

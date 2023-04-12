@@ -5,15 +5,15 @@
 //  Created by Tradd McCorkle on 4/11/23.
 //
 
-import CoreLocation
 import SwiftUI
+import CoreLocation
 
 class WeatherAPI {
     let apiKey: String //API key
     
     init() {
         guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "WeatherAPIKey") as? String else {
-            fatalError("API key not found in info.plist file")
+            fatalError("API key not found in simple-weather-Info.plist file") //API Key stored in .plist file
         }
         self.apiKey = apiKey
     }
