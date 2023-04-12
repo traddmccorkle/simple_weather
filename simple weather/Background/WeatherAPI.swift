@@ -5,7 +5,6 @@
 //  Created by Tradd McCorkle on 4/11/23.
 //
 
-import SwiftUI
 import CoreLocation
 
 class WeatherAPI {
@@ -17,9 +16,10 @@ class WeatherAPI {
         }
         self.apiKey = apiKey
     }
+    
     let baseURL = "https://api.openweathermap.org/data/2.5/weather" //base URL
     
-    func getWeatherDataForCurrentLocation(completion: @escaping (WeatherData?, Error?) -> ()) {
+    func getWeatherDataForCurrentLocation(unit: String, completion: @escaping (WeatherData?, Error?) -> ()) {
         let locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
@@ -33,7 +33,7 @@ class WeatherAPI {
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
         
-        let urlString = "\(baseURL)?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)&units=imperial"
+        let urlString = "\(baseURL)?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)&units=\(unit)"
         let url = URL(string: urlString)!
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -64,6 +64,8 @@ struct WeatherData: Codable {
 struct Main: Codable {
     let temp: Double
     let humidity: Int
+    let temp_min: Double
+    let temp_max: Double
 }
 
 struct Weather: Codable {
@@ -71,16 +73,3 @@ struct Weather: Codable {
     let description: String
 }
 
-let weatherAPI = WeatherAPI()
-
-func getCurrentWeather() {
-    let weatherAPI = WeatherAPI()
-    weatherAPI.getWeatherDataForCurrentLocation { (weatherData, error) in
-        if let error = error {
-            print("Error getting weather data: \(error.localizedDescription)")
-        } else if let weatherData = weatherData {
-            let temperature = weatherData.main.temp
-            print("Temperature: \(temperature) °F")
-        }
-    }
-}

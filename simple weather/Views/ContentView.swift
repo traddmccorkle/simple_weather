@@ -10,8 +10,19 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-         NavigationStack {
+        TabView {
             WeatherView()
+                .tabItem {
+                    Label("Weather", systemImage: "cloud.fill")
+                }
+            LocationsView()
+                .tabItem {
+                    Label("Locations", systemImage: "magnifyingglass")
+                }
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "gear")
+                }
         }
     }
     
