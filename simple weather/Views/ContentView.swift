@@ -8,10 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var weatherAPI = WeatherAPI()
+    
     
     var body: some View {
-        NavigationStack {
-            WeatherView()
+        ZStack {
+            TabView {
+                WeatherView()
+                    .tabItem {
+                        Label("Weather", systemImage: "sun.max.fill")
+                    }
+                LocationsView()
+                    .tabItem {
+                        Label("Locations", systemImage: "location.circle.fill")
+                    }
+                SettingsView()
+                    .environmentObject(weatherAPI)
+                    .tabItem {
+                        Label("Settings", systemImage: "gear")
+                    }
+            }
         }
     }
 }

@@ -9,7 +9,6 @@ struct WeatherView: View {
     @State private var highTemperature: String?
     @State private var lowTemperature: String?
     @State private var weatherCondition: String?
-    @State private var temperatureUnitImperial = UserDefaults.standard.bool(forKey: "temperatureUnitImperial")
 
     //Body
     var body: some View {
@@ -47,12 +46,12 @@ struct WeatherView: View {
             trailing:
                 Menu {
                     Button(action: {
-                        self.temperatureUnitImperial = false
-                        UserDefaults.standard.set(self.temperatureUnitImperial, forKey: "temperatureUnitImperial")
+                        self.weatherAPI.temperatureUnitImperial = false
+                        UserDefaults.standard.set(self.weatherAPI.temperatureUnitImperial, forKey: "temperatureUnitImperial")
                         getCurrentWeather()//Updates weather when buton is pressed
                     }) {
                         HStack {
-                            if temperatureUnitImperial == false {
+                            if weatherAPI.temperatureUnitImperial == false {
                                 Text("✓ Celsius °C")
                             } else {
                                 Text("Celsius °C")
@@ -60,12 +59,12 @@ struct WeatherView: View {
                         }
                     }
                     Button(action: {
-                        self.temperatureUnitImperial = true
-                        UserDefaults.standard.set(self.temperatureUnitImperial, forKey: "temperatureUnitImperial")
+                        self.weatherAPI.temperatureUnitImperial = true
+                        UserDefaults.standard.set(self.weatherAPI.temperatureUnitImperial, forKey: "temperatureUnitImperial")
                         getCurrentWeather()//Updates weather when buton is pressed
                     }) {
                         HStack {
-                            if temperatureUnitImperial == true {
+                            if weatherAPI.temperatureUnitImperial == true {
                                 Text("✓ Fahrenheit °F")
                             } else {
                                 Text("Fahrenheit °F")
@@ -82,7 +81,7 @@ struct WeatherView: View {
 
     //Function that converts temperature from Imperial to Metric if needed
     private func convertTemperatureIfNeeded(_ temperature: Double) -> Int {
-        if temperatureUnitImperial {
+        if weatherAPI.temperatureUnitImperial {
             return Int(temperature)
         } else {
             let celsius = (temperature - 32) * (5.0 / 9.0) // Use floating-point division here

@@ -7,8 +7,10 @@
 
 import CoreLocation
 
-class WeatherAPI {
+class WeatherAPI: ObservableObject {
     let apiKey: String //API key
+    
+    @Published public var temperatureUnitImperial = UserDefaults.standard.bool(forKey: "temperatureUnitImperial")
     
     init() {
         guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "WeatherAPIKey") as? String else {
