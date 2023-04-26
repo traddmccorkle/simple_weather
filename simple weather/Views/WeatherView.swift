@@ -40,6 +40,7 @@ struct WeatherView: View {
             }
             .onAppear() { //Updates weather when this view appears
                 getCurrentWeather()
+                print("Fetching weather.")
             }
         }
         .navigationBarItems(
@@ -48,7 +49,6 @@ struct WeatherView: View {
                     Button(action: {
                         self.weatherAPI.temperatureUnitImperial = false
                         UserDefaults.standard.set(self.weatherAPI.temperatureUnitImperial, forKey: "temperatureUnitImperial")
-                        getCurrentWeather()//Updates weather when buton is pressed
                     }) {
                         HStack {
                             if weatherAPI.temperatureUnitImperial == false {
@@ -61,7 +61,6 @@ struct WeatherView: View {
                     Button(action: {
                         self.weatherAPI.temperatureUnitImperial = true
                         UserDefaults.standard.set(self.weatherAPI.temperatureUnitImperial, forKey: "temperatureUnitImperial")
-                        getCurrentWeather()//Updates weather when buton is pressed
                     }) {
                         HStack {
                             if weatherAPI.temperatureUnitImperial == true {

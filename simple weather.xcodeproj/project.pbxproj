@@ -13,7 +13,6 @@
 		C98DB25229E5C05200C073A9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C98DB25129E5C05200C073A9 /* Preview Assets.xcassets */; };
 		C98DB25929E5C0AC00C073A9 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98DB25829E5C0AC00C073A9 /* WeatherAPI.swift */; };
 		C98DB26D29E6204500C073A9 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98DB26C29E6204500C073A9 /* WeatherView.swift */; };
-		C98DB30729EB8BA000C073A9 /* LocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98DB30629EB8BA000C073A9 /* LocationsView.swift */; };
 		C98DB30929EB8BA800C073A9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98DB30829EB8BA800C073A9 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +40,6 @@
 		C98DB26429E5CAB200C073A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C98DB26C29E6204500C073A9 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		C98DB27429E6307C00C073A9 /* simple-weather-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "simple-weather-Info.plist"; sourceTree = SOURCE_ROOT; };
-		C98DB30629EB8BA000C073A9 /* LocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsView.swift; sourceTree = "<group>"; };
 		C98DB30829EB8BA800C073A9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,7 +106,6 @@
 				C98DB24A29E5C05000C073A9 /* simple_weatherApp.swift */,
 				C98DB24C29E5C05000C073A9 /* ContentView.swift */,
 				C98DB26C29E6204500C073A9 /* WeatherView.swift */,
-				C98DB30629EB8BA000C073A9 /* LocationsView.swift */,
 				C98DB30829EB8BA800C073A9 /* SettingsView.swift */,
 			);
 			path = Views;
@@ -195,7 +192,6 @@
 			files = (
 				C98DB25929E5C0AC00C073A9 /* WeatherAPI.swift in Sources */,
 				C98DB24D29E5C05000C073A9 /* ContentView.swift in Sources */,
-				C98DB30729EB8BA000C073A9 /* LocationsView.swift in Sources */,
 				C98DB30929EB8BA800C073A9 /* SettingsView.swift in Sources */,
 				C98DB24B29E5C05000C073A9 /* simple_weatherApp.swift in Sources */,
 				C98DB26D29E6204500C073A9 /* WeatherView.swift in Sources */,

@@ -18,10 +18,6 @@ struct ContentView: View {
                     .tabItem {
                         Label("Weather", systemImage: "sun.max.fill")
                     }
-                LocationsView()
-                    .tabItem {
-                        Label("Locations", systemImage: "location.circle.fill")
-                    }
                 SettingsView()
                     .environmentObject(weatherAPI)
                     .tabItem {
