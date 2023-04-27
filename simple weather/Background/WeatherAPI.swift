@@ -1,5 +1,5 @@
 //
-//  WeatherMan.swift
+//  WeatherAPI.swift
 //  simple weather
 //
 //  Created by Tradd McCorkle on 4/11/23.
@@ -8,20 +8,12 @@
 import CoreLocation
 
 class WeatherAPI: ObservableObject {
-    let apiKey: String //API key
+    let apiKey = kWeatherAPIKey //API key
+    let baseURL = kWeatherBaseURL //API base URL
+    let globalVariables = GlobalVariables()
     
-    @Published public var temperatureUnitImperial = UserDefaults.standard.bool(forKey: "temperatureUnitImperial")
     
-    init() {
-        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "WeatherAPIKey") as? String else {
-            fatalError("API key not found in simple-weather-Info.plist file") //API Key stored in .plist file
-        }
-        self.apiKey = apiKey
-    }
-    
-    let baseURL = "https://api.openweathermap.org/data/2.5/weather" //base URL
-    
-    func getWeatherDataForCurrentLocation(units: String = "imperial", completion: @escaping (WeatherData?, Error?) -> ()) {
+    func getWeatherDataForCurrentLocation(completion: @escaping (WeatherData?, Error?) -> ()) {
         let locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
@@ -35,7 +27,7 @@ class WeatherAPI: ObservableObject {
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
         
-        let urlString = "\(baseURL)?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)&units=\(units)"
+        let urlString = "\(baseURL)?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)&units=\(globalVariables.globalTemperatureUnit)"
         let url = URL(string: urlString)!
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in

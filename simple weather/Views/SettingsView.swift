@@ -9,42 +9,50 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @EnvironmentObject var weatherAPI: WeatherAPI
     let weatherView = WeatherView()
+    @ObservedObject var globalVariables = GlobalVariables()
     
     var body: some View {
         NavigationStack {
             List {
                 Section(header: Text("Units")) {
                     Button(action: {
-                        weatherAPI.temperatureUnitImperial = true
-                        print("Temperature unit set to Fahrenheit.")
+                        if globalVariables.globalTemperatureUnit == "imperial" {
+                            print("The temperature unit is already set to Fahrenheit.")
+                        } else if globalVariables.globalTemperatureUnit == "metric" {
+                            globalVariables.globalTemperatureUnit = "imperial"
+                            print("Temperature unit set to Fahrenheit.")
+                        }
                     }) {
                         HStack {
                             Text("Fahrenheit °F")
                             Spacer()
-                            if weatherAPI.temperatureUnitImperial == false {
+                            if globalVariables.globalTemperatureUnit == "metric" {
                                 Image(systemName: "circle")
-                            } else {
+                            } else if globalVariables.globalTemperatureUnit == "imperial" {
                                 Image(systemName: "checkmark.circle.fill")
                             }
                         }
                     }
                     Button(action: {
-                        weatherAPI.temperatureUnitImperial = false
-                        print("Temperature unit set to Celsius.")
+                        if globalVariables.globalTemperatureUnit == "metric" {
+                            print("The temperature unit is already set to Celsius.")
+                        } else if globalVariables.globalTemperatureUnit == "imperial" {
+                            globalVariables.globalTemperatureUnit = "metric"
+                            print("Temperature unit set to Celsius.")
+                        }
                     }) {
                         HStack {
                             Text("Celsius °C")
                             Spacer()
-                            if weatherAPI.temperatureUnitImperial == true {
+                            if globalVariables.globalTemperatureUnit == "imperial" {
                                 Image(systemName: "circle")
-                            } else {
+                            } else if globalVariables.globalTemperatureUnit == "metric" {
                                 Image(systemName: "checkmark.circle.fill")
                             }
                         }
                     }
-                } // Units section close
+                }
             }
         }
     }

@@ -2,20 +2,20 @@ import SwiftUI
 import CoreLocation
 
 struct WeatherView: View {
-    let weatherAPI = WeatherAPI() //Variable that calls the class WeatherAPI()
-    //Variables
+    let weatherAPI = WeatherAPI()
+    @EnvironmentObject var globalVariables: GlobalVariables
+    
     @State private var currentLocation: String?
-    @State private var temperature: String?
-    @State private var highTemperature: String?
-    @State private var lowTemperature: String?
+    @State private var temperature: Double = 0
+    @State private var highTemperature: Double = 0
+    @State private var lowTemperature: Double = 0
     @State private var weatherCondition: String?
 
     //Body
     var body: some View {
         NavigationStack {
             VStack {
-                if temperature == nil {
-                    //Displays progress circle until weather updates
+                if temperature == 0 {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle())
                 } else {
@@ -26,74 +26,29 @@ struct WeatherView: View {
                         Text("\(currentLocation ?? "")")
                             .font(.system(size: 25.0, design: .rounded))
                     }
-                    Text("\(temperature ?? "")°")
+                    Text(String(format: "%g", round(temperature)))
                         .font(.system(size: 100.0, design: .rounded))
                     HStack {
-                        Text("H: \(highTemperature ?? "")°")
+                        Text("H: \(String(format: "%g", round(highTemperature)))°")
                             .font(.system(size: 25.0, design: .rounded))
-                        Text("L: \(lowTemperature ?? "")°")
+                        Text("L: \(String(format: "%g", round(lowTemperature)))°")
                             .font(.system(size: 25.0, design: .rounded))
                     }
                     Text("\(weatherCondition ?? "")")
                         .font(.system(size: 20.0, design: .rounded))
                 }
             }
-            .onAppear() { //Updates weather when this view appears
+            .onAppear() {
                 getCurrentWeather()
                 print("Fetching weather.")
             }
         }
-        .navigationBarItems(
-            trailing:
-                Menu {
-                    Button(action: {
-                        self.weatherAPI.temperatureUnitImperial = false
-                        UserDefaults.standard.set(self.weatherAPI.temperatureUnitImperial, forKey: "temperatureUnitImperial")
-                    }) {
-                        HStack {
-                            if weatherAPI.temperatureUnitImperial == false {
-                                Text("✓ Celsius °C")
-                            } else {
-                                Text("Celsius °C")
-                            }
-                        }
-                    }
-                    Button(action: {
-                        self.weatherAPI.temperatureUnitImperial = true
-                        UserDefaults.standard.set(self.weatherAPI.temperatureUnitImperial, forKey: "temperatureUnitImperial")
-                    }) {
-                        HStack {
-                            if weatherAPI.temperatureUnitImperial == true {
-                                Text("✓ Fahrenheit °F")
-                            } else {
-                                Text("Fahrenheit °F")
-                            }
-                        }
-                    }
-                }
-                label: {
-                    Image(systemName: "ellipsis.circle")
-                        .font(.system(size: 20))
-                }
-        )
-    }
-
-    //Function that converts temperature from Imperial to Metric if needed
-    private func convertTemperatureIfNeeded(_ temperature: Double) -> Int {
-        if weatherAPI.temperatureUnitImperial {
-            return Int(temperature)
-        } else {
-            let celsius = (temperature - 32) * (5.0 / 9.0) // Use floating-point division here
-            return Int(celsius)
-        }
     }
 
     //Function that gets the current weather using WeatherAPI
-    func getCurrentWeather(units: String = "imperial") { // Add a units parameter with a default value
+    func getCurrentWeather() {
         let locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
-       
-
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.startUpdatingLocation()
         
@@ -101,22 +56,22 @@ struct WeatherView: View {
             print("Unable to get user location.")
             return
         } //Checks to see if currentLocation is nil
-        weatherAPI.getWeatherDataForCurrentLocation(units: units) { (weatherData, error) in
+        
+        weatherAPI.getWeatherDataForCurrentLocation() { (weatherData, error) in
             if let error = error {
                 print("Error getting weather data: \(error.localizedDescription)")
             } else if let weatherData = weatherData {
-                let temperatureInSelectedUnit = convertTemperatureIfNeeded(weatherData.main.temp)
-                self.temperature = String(temperatureInSelectedUnit)
+                self.temperature = weatherData.main.temp
                 self.currentLocation = weatherData.name
-                self.highTemperature = String(convertTemperatureIfNeeded(weatherData.main.temp_max))
-                self.lowTemperature = String(convertTemperatureIfNeeded(weatherData.main.temp_min))
+                self.highTemperature = weatherData.main.temp_max
+                self.lowTemperature = weatherData.main.temp_min
                 if let firstWeather = weatherData.weather.first {
                     self.weatherCondition = firstWeather.description.capitalized
                 }
             }
         }
     }
-    //Preview provider
+
     struct WeatherView_Previews: PreviewProvider {
         static var previews: some View {
             WeatherView()
