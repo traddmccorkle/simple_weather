@@ -16,12 +16,7 @@ struct SettingsView: View {
             List {
                 Section(header: Text("Units")) {
                     Button(action: {
-                        if globalVariables.globalTemperatureUnit == "imperial" {
-                            print("The temperature unit is already set to Fahrenheit.")
-                        } else if globalVariables.globalTemperatureUnit == "metric" {
-                            globalVariables.globalTemperatureUnit = "imperial"
-                            print("Temperature unit set to Fahrenheit.")
-                        }
+                        globalVariables.globalTemperatureUnit = "imperial"
                     }) {
                         HStack {
                             Text("Fahrenheit °F")
@@ -34,12 +29,7 @@ struct SettingsView: View {
                         }
                     }
                     Button(action: {
-                        if globalVariables.globalTemperatureUnit == "metric" {
-                            print("The temperature unit is already set to Celsius.")
-                        } else if globalVariables.globalTemperatureUnit == "imperial" {
-                            globalVariables.globalTemperatureUnit = "metric"
-                            print("Temperature unit set to Celsius.")
-                        }
+                        globalVariables.globalTemperatureUnit = "metric"
                     }) {
                         HStack {
                             Text("Celsius °C")

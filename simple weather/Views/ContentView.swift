@@ -1,5 +1,7 @@
 //
 //  ContentView.swift
+//
+//  ContentView.swift
 //  simple weather
 //
 //  Created by Tradd McCorkle on 4/11/23.
@@ -20,10 +22,6 @@ struct ContentView: View {
                     .tabItem {
                         Label("Weather", systemImage: "sun.max.fill")
                     }
-                /*LocationsView()
-                    .tabItem {
-                        Label("Locations", systemImage: "location.magnifyingglass")
-                    }*/
                 SettingsView()
                     .environmentObject(weatherAPI)
                     .environmentObject(globalVariables)

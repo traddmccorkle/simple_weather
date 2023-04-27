@@ -17,43 +17,51 @@ struct WeatherView: View {
     @State private var highTemperature: Double = 0
     @State private var lowTemperature: Double = 0
     @State private var weatherCondition: String?
-
-    //Body
+    
     var body: some View {
-        NavigationStack {
-            VStack {
-                if temperature == 0 {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle())
-                } else {
+        VStack {
+            ZStack {
+                Image("gray_background")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .edgesIgnoringSafeArea(.all)
+                VStack {
                     HStack {
                         Text("\(currentLocation ?? "")")
                             .font(.system(size: 30.0, design: .rounded))
+                            .foregroundColor(.white)
+                        Image(systemName: "location.fill")
+                            .font(.system(size: 20, design: .rounded))
+                            .foregroundColor(.white)
+                            .padding(.trailing, 2)
                     }
-                    Text("\(String(format: "%g", round(temperature)))°")
-                        .font(.system(size: 100.0, design: .rounded))
-                    Text("\(weatherCondition ?? "")")
-                        .font(.system(size: 25.0, design: .rounded))
+                    HStack {
+                        VStack {
+                            Text(weatherEmoji())
+                                .font(.system(size: 125.0, design: .rounded))
+                        }
+                        VStack {
+                            Text("\(String(format: "%g", round(temperature)))°")
+                                .font(.system(size: 100.0, design: .rounded))
+                                .foregroundColor(.white)
+                        }
+                    }
                     HStack {
                         Text("H:\(String(format: "%g", round(highTemperature)))°")
                             .font(.system(size: 20.0, design: .rounded))
+                            .foregroundColor(.white)
                         Text("L:\(String(format: "%g", round(lowTemperature)))°")
                             .font(.system(size: 20.0, design: .rounded))
+                            .foregroundColor(.white)
                     }
                 }
-            }
-            .onAppear() {
-                getCurrentWeather()
-                print("Fetching weather.")
-            }
-            .onChange(of: globalVariables.globalTemperatureUnit) { _ in
-                getCurrentWeather()
-                print("Temperature unit changed. Fetching updated weather.")
+                .onAppear() {
+                    getCurrentWeather()
+                }
             }
         }
     }
-
-    //Function that gets the current weather using WeatherAPI
+    
     func getCurrentWeather() {
         let locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
@@ -63,7 +71,7 @@ struct WeatherView: View {
         guard locationManager.location != nil else {
             print("Unable to get user location.")
             return
-        } //Checks to see if currentLocation is nil
+        }
         
         weatherAPI.getWeatherDataForCurrentLocation(temperatureUnit: globalVariables.globalTemperatureUnit) { (weatherData, error) in
             if let error = error {
@@ -79,7 +87,31 @@ struct WeatherView: View {
             }
         }
     }
-
+    
+    func weatherEmoji() -> String {
+        guard let condition = weatherCondition else { return "" }
+        let conditionLowercased = condition.lowercased()
+        
+        let weatherEmojis: [String: String] = [
+            "cloud": "☁️",
+            "clear": "☀️",
+            "rain": "🌧",
+            "drizzle": "🌦️",
+            "thunderstorm": "⛈️",
+            "snow": "❄️",
+            "fog": "🌫️",
+            "tornado": "🌪️",
+            "ash": "🌋"
+        ]
+        
+        for (conditionKey, emoji) in weatherEmojis {
+            if conditionLowercased.contains(conditionKey) {
+                return emoji
+            }
+        }
+        return "🌡️"
+    }
+    
     struct WeatherView_Previews: PreviewProvider {
         static var previews: some View {
             WeatherView()
