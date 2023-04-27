@@ -1,3 +1,10 @@
+//
+//  WeatherView.swift
+//  simple weather
+//
+//  Created by Tradd McCorkle on 4/11/23.
+//
+
 import SwiftUI
 import CoreLocation
 
@@ -20,22 +27,19 @@ struct WeatherView: View {
                         .progressViewStyle(CircularProgressViewStyle())
                 } else {
                     HStack {
-                        Image(systemName: "location.fill")
-                            .resizable()
-                            .frame(width: 20, height: 20)
                         Text("\(currentLocation ?? "")")
-                            .font(.system(size: 25.0, design: .rounded))
+                            .font(.system(size: 30.0, design: .rounded))
                     }
-                    Text(String(format: "%g", round(temperature)))
+                    Text("\(String(format: "%g", round(temperature)))°")
                         .font(.system(size: 100.0, design: .rounded))
-                    HStack {
-                        Text("H: \(String(format: "%g", round(highTemperature)))°")
-                            .font(.system(size: 25.0, design: .rounded))
-                        Text("L: \(String(format: "%g", round(lowTemperature)))°")
-                            .font(.system(size: 25.0, design: .rounded))
-                    }
                     Text("\(weatherCondition ?? "")")
-                        .font(.system(size: 20.0, design: .rounded))
+                        .font(.system(size: 25.0, design: .rounded))
+                    HStack {
+                        Text("H:\(String(format: "%g", round(highTemperature)))°")
+                            .font(.system(size: 20.0, design: .rounded))
+                        Text("L:\(String(format: "%g", round(lowTemperature)))°")
+                            .font(.system(size: 20.0, design: .rounded))
+                    }
                 }
             }
             .onAppear() {

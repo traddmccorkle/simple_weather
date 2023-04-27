@@ -10,6 +10,6 @@ import Combine
 
 class GlobalVariables: ObservableObject {
     @Published public var globalTemperatureUnit = "imperial"
-    public var globalLatitude = ""
-    public var globalLongitude = ""
+    @Published public var globalLatitude = ""
+    @Published public var globalLongitude = ""
 }

@@ -10,7 +10,6 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var weatherAPI = WeatherAPI()
     
-    
     var body: some View {
         ZStack {
             TabView {
@@ -18,10 +17,10 @@ struct ContentView: View {
                     .tabItem {
                         Label("Weather", systemImage: "sun.max.fill")
                     }
-                LocationsView()
+                /*LocationsView()
                     .tabItem {
                         Label("Locations", systemImage: "location.magnifyingglass")
-                    }
+                    }*/
                 SettingsView()
                     .environmentObject(weatherAPI)
                     .tabItem {
