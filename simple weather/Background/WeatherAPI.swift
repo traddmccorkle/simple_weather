@@ -7,13 +7,30 @@
 
 import CoreLocation
 
+struct WeatherData: Codable {
+    let main: Main
+    let weather: [Weather]
+    let name: String
+}
+
+struct Main: Codable {
+    let temp: Double
+    let humidity: Int
+    let temp_min: Double
+    let temp_max: Double
+}
+
+struct Weather: Codable {
+    let main: String
+    let description: String
+}
+
 class WeatherAPI: ObservableObject {
     let apiKey = kWeatherAPIKey //API key
     let baseURL = kWeatherBaseURL //API base URL
-    let globalVariables = GlobalVariables()
+    @Published public var globalVariables = GlobalVariables()
     
-    
-    func getWeatherDataForCurrentLocation(completion: @escaping (WeatherData?, Error?) -> ()) {
+    func getWeatherDataForCurrentLocation(temperatureUnit: String, completion: @escaping (WeatherData?, Error?) -> ()) {
         let locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
@@ -27,7 +44,7 @@ class WeatherAPI: ObservableObject {
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
         
-        let urlString = "\(baseURL)?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)&units=\(globalVariables.globalTemperatureUnit)"
+        let urlString = "\(baseURL)?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)&units=\(temperatureUnit)"
         let url = URL(string: urlString)!
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -48,22 +65,3 @@ class WeatherAPI: ObservableObject {
         task.resume()
     }
 }
-
-struct WeatherData: Codable {
-    let main: Main
-    let weather: [Weather]
-    let name: String
-}
-
-struct Main: Codable {
-    let temp: Double
-    let humidity: Int
-    let temp_min: Double
-    let temp_max: Double
-}
-
-struct Weather: Codable {
-    let main: String
-    let description: String
-}
-

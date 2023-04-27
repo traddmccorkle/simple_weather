@@ -10,7 +10,7 @@ import SwiftUI
 struct LocationsView: View {
     var body: some View {
         VStack {
-            Text("WIP")
+            Text("Placeholder")
         }
     }
 }

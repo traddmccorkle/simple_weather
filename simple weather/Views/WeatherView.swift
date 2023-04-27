@@ -9,7 +9,7 @@ import SwiftUI
 import CoreLocation
 
 struct WeatherView: View {
-    let weatherAPI = WeatherAPI()
+    @EnvironmentObject var weatherAPI: WeatherAPI
     @EnvironmentObject var globalVariables: GlobalVariables
     
     @State private var currentLocation: String?
@@ -46,6 +46,10 @@ struct WeatherView: View {
                 getCurrentWeather()
                 print("Fetching weather.")
             }
+            .onChange(of: globalVariables.globalTemperatureUnit) { _ in
+                getCurrentWeather()
+                print("Temperature unit changed. Fetching updated weather.")
+            }
         }
     }
 
@@ -61,7 +65,7 @@ struct WeatherView: View {
             return
         } //Checks to see if currentLocation is nil
         
-        weatherAPI.getWeatherDataForCurrentLocation() { (weatherData, error) in
+        weatherAPI.getWeatherDataForCurrentLocation(temperatureUnit: globalVariables.globalTemperatureUnit) { (weatherData, error) in
             if let error = error {
                 print("Error getting weather data: \(error.localizedDescription)")
             } else if let weatherData = weatherData {

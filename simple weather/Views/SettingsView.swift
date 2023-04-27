@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct SettingsView: View {
-    
-    let weatherView = WeatherView()
-    @ObservedObject var globalVariables = GlobalVariables()
+    @EnvironmentObject var weatherAPI: WeatherAPI
+    @EnvironmentObject var globalVariables: GlobalVariables
     
     var body: some View {
         NavigationStack {
