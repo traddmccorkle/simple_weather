@@ -80,7 +80,7 @@
 			children = (
 				C98DB27429E6307C00C073A9 /* simple-weather-Info.plist */,
 				C98DB27029E6251C00C073A9 /* Views */,
-				C98DB27129E6252900C073A9 /* Background */,
+				C98DB27129E6252900C073A9 /* Backend */,
 				C98DB24E29E5C05200C073A9 /* Assets.xcassets */,
 				C98DB25029E5C05200C073A9 /* Preview Content */,
 			);
@@ -115,14 +115,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		C98DB27129E6252900C073A9 /* Background */ = {
+		C98DB27129E6252900C073A9 /* Backend */ = {
 			isa = PBXGroup;
 			children = (
 				C98DB25829E5C0AC00C073A9 /* WeatherAPI.swift */,
 				C9DD2B8B29FAE74900E03DB0 /* Constants.swift */,
 				C9DD2B8F29FAEBCD00E03DB0 /* GlobalVariables.swift */,
 			);
-			path = Background;
+			path = Backend;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

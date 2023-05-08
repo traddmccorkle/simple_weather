@@ -21,7 +21,7 @@ struct WeatherView: View {
     var body: some View {
         VStack {
             ZStack {
-                Image("gray_background")
+                Image("WeatherBackground")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .edgesIgnoringSafeArea(.all)
@@ -59,7 +59,7 @@ struct WeatherView: View {
                     getCurrentWeather()
                 }
             }
-        }
+        }.foregroundStyle(Color.white)
     }
     
     func getCurrentWeather() {
