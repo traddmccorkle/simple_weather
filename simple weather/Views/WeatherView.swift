@@ -10,7 +10,6 @@ import CoreLocation
 
 struct WeatherView: View {
     @EnvironmentObject var weatherAPI: WeatherAPI
-    @EnvironmentObject var globalVariables: GlobalVariables
     
     @State private var currentLocation: String?
     @State private var temperature: Double = 0
@@ -73,7 +72,7 @@ struct WeatherView: View {
             return
         }
         
-        weatherAPI.getWeatherDataForCurrentLocation(temperatureUnit: globalVariables.globalTemperatureUnit) { (weatherData, error) in
+        weatherAPI.getWeatherDataForCurrentLocation(temperatureUnit: weatherAPI.temperatureUnit) { (weatherData, error) in
             if let error = error {
                 print("Error getting weather data: \(error.localizedDescription)")
             } else if let weatherData = weatherData {

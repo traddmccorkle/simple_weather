@@ -14,8 +14,6 @@
 		C98DB25929E5C0AC00C073A9 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98DB25829E5C0AC00C073A9 /* WeatherAPI.swift */; };
 		C98DB26D29E6204500C073A9 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98DB26C29E6204500C073A9 /* WeatherView.swift */; };
 		C98DB30929EB8BA800C073A9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98DB30829EB8BA800C073A9 /* SettingsView.swift */; };
-		C9DD2B8C29FAE74900E03DB0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD2B8B29FAE74900E03DB0 /* Constants.swift */; };
-		C9DD2B9029FAEBCD00E03DB0 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD2B8F29FAEBCD00E03DB0 /* GlobalVariables.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,8 +41,6 @@
 		C98DB26C29E6204500C073A9 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		C98DB27429E6307C00C073A9 /* simple-weather-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "simple-weather-Info.plist"; sourceTree = SOURCE_ROOT; };
 		C98DB30829EB8BA800C073A9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		C9DD2B8B29FAE74900E03DB0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		C9DD2B8F29FAEBCD00E03DB0 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,8 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				C98DB25829E5C0AC00C073A9 /* WeatherAPI.swift */,
-				C9DD2B8B29FAE74900E03DB0 /* Constants.swift */,
-				C9DD2B8F29FAEBCD00E03DB0 /* GlobalVariables.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -200,9 +194,7 @@
 				C98DB24D29E5C05000C073A9 /* ContentView.swift in Sources */,
 				C98DB30929EB8BA800C073A9 /* SettingsView.swift in Sources */,
 				C98DB24B29E5C05000C073A9 /* simple_weatherApp.swift in Sources */,
-				C9DD2B9029FAEBCD00E03DB0 /* GlobalVariables.swift in Sources */,
 				C98DB26D29E6204500C073A9 /* WeatherView.swift in Sources */,
-				C9DD2B8C29FAE74900E03DB0 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

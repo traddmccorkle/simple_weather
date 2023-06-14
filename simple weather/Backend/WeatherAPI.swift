@@ -26,9 +26,9 @@ struct Weather: Codable {
 }
 
 class WeatherAPI: ObservableObject {
-    let apiKey = kWeatherAPIKey //API key
-    let baseURL = kWeatherBaseURL //API base URL
-    @Published public var globalVariables = GlobalVariables()
+    let apiKey = "7958f83c1c9a9a3a23894a4b9fed97fe"
+    let baseURL = "https://api.openweathermap.org/data/2.5/weather"
+    @Published var temperatureUnit = "imperial"
     
     func getWeatherDataForCurrentLocation(temperatureUnit: String, completion: @escaping (WeatherData?, Error?) -> ()) {
         let locationManager = CLLocationManager()

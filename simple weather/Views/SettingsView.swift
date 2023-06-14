@@ -9,34 +9,33 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var weatherAPI: WeatherAPI
-    @EnvironmentObject var globalVariables: GlobalVariables
     
     var body: some View {
         NavigationStack {
             List {
                 Section(header: Text("Units")) {
                     Button(action: {
-                        globalVariables.globalTemperatureUnit = "imperial"
+                        weatherAPI.temperatureUnit = "imperial"
                     }) {
                         HStack {
                             Text("Fahrenheit °F")
                             Spacer()
-                            if globalVariables.globalTemperatureUnit == "metric" {
+                            if weatherAPI.temperatureUnit == "metric" {
                                 Image(systemName: "circle")
-                            } else if globalVariables.globalTemperatureUnit == "imperial" {
+                            } else if weatherAPI.temperatureUnit == "imperial" {
                                 Image(systemName: "checkmark.circle.fill")
                             }
                         }
                     }
                     Button(action: {
-                        globalVariables.globalTemperatureUnit = "metric"
+                        weatherAPI.temperatureUnit = "metric"
                     }) {
                         HStack {
                             Text("Celsius °C")
                             Spacer()
-                            if globalVariables.globalTemperatureUnit == "imperial" {
+                            if weatherAPI.temperatureUnit == "imperial" {
                                 Image(systemName: "circle")
-                            } else if globalVariables.globalTemperatureUnit == "metric" {
+                            } else if weatherAPI.temperatureUnit == "metric" {
                                 Image(systemName: "checkmark.circle.fill")
                             }
                         }
