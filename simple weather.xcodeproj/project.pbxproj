@@ -76,7 +76,7 @@
 			children = (
 				C98DB27429E6307C00C073A9 /* simple-weather-Info.plist */,
 				C98DB27029E6251C00C073A9 /* Views */,
-				C98DB27129E6252900C073A9 /* Backend */,
+				C98DB27129E6252900C073A9 /* Models */,
 				C98DB24E29E5C05200C073A9 /* Assets.xcassets */,
 				C98DB25029E5C05200C073A9 /* Preview Content */,
 			);
@@ -111,12 +111,12 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		C98DB27129E6252900C073A9 /* Backend */ = {
+		C98DB27129E6252900C073A9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				C98DB25829E5C0AC00C073A9 /* WeatherAPI.swift */,
 			);
-			path = Backend;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
